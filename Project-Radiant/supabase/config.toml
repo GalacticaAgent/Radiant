@@ -1,0 +1,26 @@
+# Supabase Edge Functions 配置文件
+# 此文件用于配置 Supabase Edge Functions 的部署和运行环境
+
+[project]
+# 项目ID（从 Supabase 控制台获取）
+id = "nccpnvlhzymsxuhoarrf"
+
+[functions]
+# Edge Functions 目录
+functions_dir = "supabase/functions"
+
+# 默认运行时
+runtime = "deno"
+
+# 默认入口文件
+entrypoint = "index.tsx"
+
+[functions.server]
+# 服务器函数配置
+name = "server"
+runtime = "deno"
+entrypoint = "index.tsx"
+
+# 环境变量（在 Supabase 控制台中配置）
+# SUPABASE_URL - Supabase 项目 URL
+# SUPABASE_SERVICE_ROLE_KEY - Supabase 服务角色密钥
