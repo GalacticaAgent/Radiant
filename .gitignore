@@ -1,0 +1,58 @@
+# Node
+node_modules/
+dist/
+build/
+.cache/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+venv/
+env/
+.venv/
+
+# Environment
+.env
+.env.local
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+.trae/
+.claude/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+logs/
+celerybeat-schedule*
+backend/celerybeat-schedule*
+perf/
+Review SKILL.md
+nul
+
+# Database
+*.db
+*.sqlite3
+
+# Docker
+.dockerignore
+
+# Uploads
+uploads/
+backend/uploads/
+
+# Tools / Binaries
+backend/.tools/
+
+# Coverage
+coverage/
+*.lcov
+.nyc_output/

@@ -1,0 +1,305 @@
+.paper-polish-modal :global(.ant-modal-content) {
+  padding: 0;
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.paper-polish-modal :global(.ant-modal-body) {
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  max-height: calc(100vh - 140px);
+}
+
+.paper-polish-modal-header {
+  padding: 18px 20px 14px;
+  background: radial-gradient(1200px 400px at 20% -20%, rgba(77, 107, 254, 0.25), transparent 60%),
+    radial-gradient(900px 380px at 90% 0%, rgba(129, 140, 248, 0.22), transparent 55%),
+    linear-gradient(180deg, rgba(17, 24, 39, 0.02), rgba(17, 24, 39, 0));
+  border-bottom: 1px solid rgba(148, 163, 184, 0.25);
+}
+
+.paper-polish-modal-title-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.paper-polish-modal-title {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.paper-polish-modal-title h2 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: -0.2px;
+  color: var(--color-text-primary);
+}
+
+.paper-polish-modal-subtitle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--color-text-secondary);
+}
+
+.paper-polish-modal-body {
+  padding: 16px 20px 20px;
+  flex: 1;
+  overflow: auto;
+}
+
+.paper-polish-tabs :global(.ant-tabs-nav) {
+  margin: 0 0 14px 0;
+}
+
+.paper-polish-tabs :global(.ant-tabs-nav::before) {
+  border-bottom-color: rgba(148, 163, 184, 0.25);
+}
+
+.paper-polish-tabs :global(.ant-tabs-tab) {
+  padding: 10px 12px;
+  border-radius: 999px;
+}
+
+.paper-polish-tabs :global(.ant-tabs-tab.ant-tabs-tab-active) {
+  background: rgba(238, 242, 255, 0.9);
+  border: 1px solid rgba(77, 107, 254, 0.25);
+}
+
+.paper-polish-tabs :global(.ant-tabs-tab-btn) {
+  font-weight: 600;
+  color: rgba(30, 41, 59, 0.8);
+}
+
+.paper-polish-tabs :global(.ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn) {
+  color: rgba(77, 107, 254, 0.95);
+}
+
+.panel-card {
+  border-radius: 14px;
+  border: 1px solid rgba(148, 163, 184, 0.28);
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 10px 26px rgba(15, 23, 42, 0.06);
+}
+
+.review-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.review-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.reviewer-identity {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+
+.reviewer-identity-name {
+  font-weight: 700;
+  color: var(--color-text-primary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.reviewer-identity-sub {
+  font-size: 12px;
+  color: var(--color-text-secondary);
+  margin-top: 2px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.reviewer-rating {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.polish-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+@media (max-width: 768px) {
+  .polish-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.polish-block-title {
+  font-weight: 700;
+  margin-bottom: 6px;
+  color: rgba(30, 41, 59, 0.85);
+}
+
+.diff-box {
+  margin-top: 12px;
+  border: 1px solid rgba(148, 163, 184, 0.25);
+  border-radius: 12px;
+  background: rgba(2, 6, 23, 0.04);
+  padding: 12px;
+  max-height: 260px;
+  overflow: auto;
+  font-size: 12px;
+  line-height: 1.5;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.reviewer-board {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+@media (max-width: 768px) {
+  .reviewer-board {
+    grid-template-columns: 1fr;
+  }
+}
+
+.reviewer-card {
+  border-radius: 14px;
+  border: 1px solid rgba(148, 163, 184, 0.3);
+  background: rgba(255, 255, 255, 0.85);
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.05);
+  padding: 14px 14px 12px;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.reviewer-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 32px rgba(15, 23, 42, 0.10);
+  border-color: rgba(77, 107, 254, 0.45);
+}
+
+.reviewer-card.selected {
+  border-color: rgba(77, 107, 254, 0.9);
+  box-shadow: 0 14px 40px rgba(77, 107, 254, 0.20);
+  background: linear-gradient(180deg, rgba(238, 242, 255, 0.95), rgba(255, 255, 255, 0.86));
+}
+
+.reviewer-card.selected::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(600px 200px at 30% 0%, rgba(77, 107, 254, 0.18), transparent 60%);
+  pointer-events: none;
+}
+
+.reviewer-card-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  position: relative;
+}
+
+.reviewer-card-profile {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  min-width: 0;
+}
+
+.reviewer-card-name {
+  font-weight: 700;
+  font-size: 15px;
+  color: var(--color-text-primary);
+  line-height: 1.2;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.reviewer-card-aff {
+  font-size: 12px;
+  color: var(--color-text-secondary);
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin-top: 2px;
+}
+
+.reviewer-card-metrics {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 6px;
+  flex-shrink: 0;
+  position: relative;
+}
+
+.metric-pill {
+  font-size: 12px;
+  padding: 2px 8px;
+  border-radius: 999px;
+  border: 1px solid rgba(148, 163, 184, 0.35);
+  color: rgba(30, 41, 59, 0.8);
+  background: rgba(255, 255, 255, 0.75);
+}
+
+.metric-pill.strong {
+  border-color: rgba(77, 107, 254, 0.4);
+  color: rgba(77, 107, 254, 0.95);
+  background: rgba(238, 242, 255, 0.9);
+}
+
+.reviewer-card-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 10px;
+  position: relative;
+}
+
+.tag-chip {
+  font-size: 12px;
+  color: rgba(30, 41, 59, 0.8);
+  background: rgba(226, 232, 240, 0.55);
+  border: 1px solid rgba(148, 163, 184, 0.25);
+  border-radius: 999px;
+  padding: 2px 8px;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.paper-polish-modal-footer {
+  display: flex;
+  justify-content: center;
+  padding: 14px 20px 18px;
+  border-top: 1px solid rgba(148, 163, 184, 0.25);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.92));
+}
+
+.start-review-btn {
+  min-width: 220px;
+  height: 42px;
+  border-radius: 999px;
+  box-shadow: 0 10px 30px rgba(77, 107, 254, 0.28);
+}

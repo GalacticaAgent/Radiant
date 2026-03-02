@@ -1,0 +1,198 @@
+services:
+  # Neo4j 图数据库
+  neo4j:
+    image: neo4j:5.14
+    container_name: radiant-neo4j
+    restart: unless-stopped
+    stop_grace_period: 30s
+    ports:
+      - "7474:7474"  # HTTP
+      - "7687:7687"  # Bolt
+    environment:
+      - NEO4J_AUTH=neo4j/${NEO4J_PASSWORD}
+      - NEO4J_server_memory_heap_initial__size=512M
+      - NEO4J_server_memory_heap_max__size=1G
+      - NEO4J_server_memory_pagecache_size=512M
+    healthcheck:
+      test: ["CMD-SHELL", "PASS=$$(echo \"$$NEO4J_AUTH\" | cut -d/ -f2-); cypher-shell -u neo4j -p \"$$PASS\" \"RETURN 1\" >/dev/null 2>&1"]
+      interval: 10s
+      timeout: 10s
+      retries: 15
+    volumes:
+      - neo4j_data:/data
+      - neo4j_logs:/logs
+      - ./database/neo4j:/import
+    networks:
+      - radiant-network
+
+  # PostgreSQL 关系数据库
+  postgres:
+    image: pgvector/pgvector:pg16
+    container_name: radiant-postgres
+    restart: unless-stopped
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_DB=radiant
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d radiant >/dev/null 2>&1"]
+      interval: 10s
+      timeout: 5s
+      retries: 15
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./database/postgres:/docker-entrypoint-initdb.d
+    networks:
+      - radiant-network
+
+  # Redis 缓存
+  redis:
+    image: redis:6-alpine
+    container_name: radiant-redis
+    restart: unless-stopped
+    ports:
+      - "6380:6379"
+    command: redis-server --appendonly yes --protected-mode no
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 15
+    volumes:
+      - redis_data:/data
+    networks:
+      - radiant-network
+
+  # FastAPI 后端
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+      args:
+        WITH_LOCAL_EMBEDDINGS: "false"
+    container_name: radiant-backend
+    ports:
+      - "8000:8000"
+    environment:
+      - NEO4J_URI=bolt://neo4j:7687
+      - NEO4J_USER=neo4j
+      - NEO4J_PASSWORD=${NEO4J_PASSWORD}
+      - POSTGRES_SERVER=postgres
+      - POSTGRES_PORT=5432
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_DB=radiant
+      - REDIS_URL=redis://redis:6379/0
+      - CELERY_BROKER_URL=redis://redis:6379/1
+      - CELERY_RESULT_BACKEND=redis://redis:6379/2
+      - DEEPSEEK_API_KEY=${DEEPSEEK_API_KEY}
+      - PGVECTOR_ENABLED=true
+    volumes:
+      - ./backend:/app
+      - backend_uploads:/app/uploads
+    depends_on:
+      neo4j:
+        condition: service_healthy
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    networks:
+      - radiant-network
+    command: uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
+
+  # Celery Worker
+  celery-worker:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+      args:
+        WITH_LOCAL_EMBEDDINGS: "false"
+    container_name: radiant-celery-worker
+    environment:
+      - NEO4J_URI=bolt://neo4j:7687
+      - NEO4J_USER=neo4j
+      - NEO4J_PASSWORD=${NEO4J_PASSWORD}
+      - POSTGRES_SERVER=postgres
+      - POSTGRES_PORT=5432
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_DB=radiant
+      - REDIS_URL=redis://redis:6379/0
+      - CELERY_BROKER_URL=redis://redis:6379/1
+      - CELERY_RESULT_BACKEND=redis://redis:6379/2
+      - DEEPSEEK_API_KEY=${DEEPSEEK_API_KEY}
+      - PGVECTOR_ENABLED=true
+    volumes:
+      - ./backend:/app
+    depends_on:
+      - redis
+      - postgres
+      - neo4j
+    networks:
+      - radiant-network
+    command: celery -A app.core.celery_app worker --loglevel=info
+
+  # Celery Beat (定时任务)
+  celery-beat:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+      args:
+        WITH_LOCAL_EMBEDDINGS: "false"
+    container_name: radiant-celery-beat
+    environment:
+      - NEO4J_URI=bolt://neo4j:7687
+      - NEO4J_USER=neo4j
+      - NEO4J_PASSWORD=${NEO4J_PASSWORD}
+      - POSTGRES_SERVER=postgres
+      - POSTGRES_PORT=5432
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_DB=radiant
+      - REDIS_URL=redis://redis:6379/0
+      - CELERY_BROKER_URL=redis://redis:6379/1
+      - CELERY_RESULT_BACKEND=redis://redis:6379/2
+      - DEEPSEEK_API_KEY=${DEEPSEEK_API_KEY}
+      - PGVECTOR_ENABLED=true
+    volumes:
+      - ./backend:/app
+    depends_on:
+      - redis
+      - postgres
+      - neo4j
+    networks:
+      - radiant-network
+    command: celery -A app.core.celery_app beat --loglevel=info
+
+  # React 前端
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: radiant-frontend
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    environment:
+      - VITE_API_BASE_URL=http://localhost:8000
+    depends_on:
+      - backend
+    networks:
+      - radiant-network
+    command: npm run dev -- --host
+
+volumes:
+  neo4j_data:
+  neo4j_logs:
+  postgres_data:
+  redis_data:
+  backend_uploads:
+
+networks:
+  radiant-network:
+    driver: bridge

@@ -1,0 +1,120 @@
+.research-page {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 24px;
+}
+
+.search-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+  transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+  text-align: center;
+}
+
+.search-section.compact {
+  min-height: auto;
+  margin-bottom: 32px;
+  align-items: flex-start;
+  text-align: left;
+}
+
+.search-header {
+  margin-bottom: 40px;
+  transition: all 0.5s;
+}
+
+.search-section.compact .search-header {
+  display: none;
+}
+
+.research-search-input {
+  max-width: 600px;
+  width: 100%;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  border-radius: 8px;
+}
+
+.research-search-input .ant-input-group-addon button {
+  border-top-right-radius: 8px !important;
+  border-bottom-right-radius: 8px !important;
+}
+
+.search-section.compact .research-search-input {
+  max-width: 100%;
+}
+
+.progress-section {
+  margin-top: 24px;
+  animation: fadeIn 0.5s ease-out;
+}
+
+.results-section {
+  animation: slideInUp 0.5s ease-out;
+}
+
+.highlight-card {
+  background: linear-gradient(135deg, #f0f5ff 0%, #ffffff 100%);
+  border: 1px solid #e6f7ff;
+}
+
+[data-theme='dark'] .highlight-card {
+  background: linear-gradient(135deg, #111d2c 0%, #141414 100%);
+  border: 1px solid #111d2c;
+}
+
+.keywords {
+  margin-top: 16px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.paper-card {
+  border-radius: 8px;
+  transition: all 0.2s;
+}
+
+.paper-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 8px;
+}
+
+.paper-footer {
+  margin-top: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--color-text-tertiary);
+  font-size: 0.85rem;
+}
+
+.graph-placeholder {
+  height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-bg-container);
+  border-radius: 8px;
+  border: 1px dashed var(--color-border);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

@@ -1,0 +1,60 @@
+/* Additional AppLayout styles */
+.app-layout-wrapper {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Override Ant Design theme colors globally */
+:where(.ant-btn-primary) {
+  background-color: var(--color-primary) !important;
+  border-color: var(--color-primary) !important;
+}
+
+:where(.ant-btn-primary:hover) {
+  background-color: var(--color-primary-hover) !important;
+  border-color: var(--color-primary-hover) !important;
+}
+
+:where(.ant-input),
+:where(.ant-input-number),
+:where(.ant-select-selector),
+:where(.ant-picker) {
+  background-color: var(--color-surface) !important;
+  border-color: var(--color-border) !important;
+  color: var(--color-text-primary) !important;
+}
+
+:where(.ant-input::placeholder) {
+  color: var(--color-text-tertiary) !important;
+}
+
+:where(.ant-input:focus),
+:where(.ant-input-number:focus),
+:where(.ant-select-focused .ant-select-selector),
+:where(.ant-picker-focused .ant-picker-input) {
+  border-color: var(--color-primary) !important;
+  box-shadow: 0 0 0 2px var(--color-primary-light) !important;
+}
+
+/* Dark theme Ant Design overrides */
+[data-theme='dark'] :where(.ant-input),
+[data-theme='dark'] :where(.ant-input-number),
+[data-theme='dark'] :where(.ant-select-selector),
+[data-theme='dark'] :where(.ant-picker) {
+  background-color: var(--color-bg-secondary) !important;
+  border-color: var(--color-border) !important;
+}
+
+[data-theme='dark'] :where(.ant-dropdown-menu) {
+  background-color: var(--color-surface) !important;
+}
+
+[data-theme='dark'] :where(.ant-dropdown-menu-item) {
+  color: var(--color-text-primary) !important;
+}
+
+[data-theme='dark'] :where(.ant-dropdown-menu-item:hover) {
+  background-color: var(--color-bg-secondary) !important;
+}

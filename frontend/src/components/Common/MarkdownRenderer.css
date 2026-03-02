@@ -1,0 +1,102 @@
+.markdown-renderer {
+  width: 100%;
+  color: var(--color-text-primary);
+  line-height: var(--line-height-normal);
+}
+
+.markdown-renderer h1,
+.markdown-renderer h2,
+.markdown-renderer h3,
+.markdown-renderer h4,
+.markdown-renderer h5,
+.markdown-renderer h6 {
+  margin-top: var(--spacing-lg);
+  margin-bottom: var(--spacing-md);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-primary);
+}
+
+.markdown-renderer h1 {
+  font-size: var(--font-size-2xl);
+}
+
+.markdown-renderer h2 {
+  font-size: var(--font-size-xl);
+}
+
+.markdown-renderer h3 {
+  font-size: var(--font-size-lg);
+}
+
+.markdown-renderer p {
+  margin-bottom: var(--spacing-md);
+}
+
+.markdown-renderer ul,
+.markdown-renderer ol {
+  margin-bottom: var(--spacing-md);
+  padding-left: var(--spacing-lg);
+}
+
+.markdown-renderer li {
+  margin-bottom: var(--spacing-xs);
+}
+
+.markdown-renderer a {
+  color: var(--color-primary);
+  text-decoration: none;
+}
+
+.markdown-renderer a:hover {
+  text-decoration: underline;
+}
+
+.markdown-renderer blockquote {
+  border-left: 4px solid var(--color-primary);
+  padding-left: var(--spacing-md);
+  margin: var(--spacing-md) 0;
+  color: var(--color-text-secondary);
+  font-style: italic;
+}
+
+.markdown-renderer table {
+  border-collapse: collapse;
+  width: 100%;
+  margin-bottom: var(--spacing-md);
+}
+
+.markdown-renderer th,
+.markdown-renderer td {
+  border: 1px solid var(--color-border);
+  padding: var(--spacing-sm);
+  text-align: left;
+}
+
+.markdown-renderer th {
+  background-color: var(--color-bg-secondary);
+  font-weight: var(--font-weight-semibold);
+}
+
+.markdown-renderer pre {
+  margin-bottom: var(--spacing-md);
+  border-radius: var(--radius-md);
+  overflow-x: auto;
+}
+
+.markdown-renderer code {
+  font-family: var(--font-family-mono);
+  font-size: 0.9em;
+}
+
+.markdown-renderer :not(pre) > code {
+  background-color: var(--color-bg-secondary);
+  padding: 2px 6px;
+  border-radius: 3px;
+  color: var(--color-text-secondary);
+}
+
+.markdown-renderer img {
+  max-width: 100%;
+  height: auto;
+  border-radius: var(--radius-md);
+}

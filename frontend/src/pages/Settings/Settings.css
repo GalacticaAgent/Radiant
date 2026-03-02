@@ -1,0 +1,104 @@
+.settings-container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: var(--spacing-lg);
+}
+
+.settings-header {
+  margin-bottom: var(--spacing-2xl);
+  padding-bottom: var(--spacing-lg);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.settings-header h1 {
+  margin: 0 0 var(--spacing-sm) 0;
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--color-text-primary);
+}
+
+.settings-subtitle {
+  margin: 0;
+  font-size: var(--font-size-md);
+  color: var(--color-text-secondary);
+}
+
+.settings-section {
+  margin-bottom: var(--spacing-2xl);
+  padding-bottom: var(--spacing-lg);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.settings-section:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.settings-section h2 {
+  margin: 0 0 var(--spacing-xs) 0;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+.settings-description {
+  margin: 0 0 var(--spacing-md) 0;
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+}
+
+.settings-section h3 {
+  margin: var(--spacing-lg) 0 var(--spacing-sm) 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+.settings-section p {
+  margin: 0 0 var(--spacing-md) 0;
+  color: var(--color-text-secondary);
+  line-height: var(--line-height-normal);
+}
+
+.settings-section ul {
+  margin: 0 0 var(--spacing-md) var(--spacing-md);
+  padding-left: var(--spacing-md);
+  list-style: disc;
+  color: var(--color-text-secondary);
+}
+
+.settings-section li {
+  margin-bottom: var(--spacing-xs);
+  line-height: var(--line-height-normal);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .settings-container {
+    padding: var(--spacing-md);
+  }
+
+  .settings-header {
+    margin-bottom: var(--spacing-lg);
+    padding-bottom: var(--spacing-md);
+  }
+
+  .settings-header h1 {
+    font-size: 1.5rem;
+  }
+
+  .settings-section {
+    margin-bottom: var(--spacing-lg);
+    padding-bottom: var(--spacing-md);
+  }
+
+  .settings-section h2 {
+    font-size: 1.2rem;
+  }
+
+  .settings-section h3 {
+    margin-top: var(--spacing-md);
+    font-size: 1rem;
+  }
+}

@@ -1,0 +1,50 @@
+.graph-page {
+  position: relative;
+  height: calc(100vh - 64px); /* Subtract header height */
+  overflow: hidden;
+}
+
+.graph-container {
+  width: 100%;
+  height: 100%;
+  background-color: #f5f7fa;
+  position: relative;
+}
+
+[data-theme='dark'] .graph-container {
+  background-color: #1f1f1f;
+}
+
+.graph-loading {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.graph-toolbar {
+  position: absolute;
+  top: 24px;
+  left: 24px;
+  z-index: 10;
+  display: flex;
+  gap: 12px;
+  background-color: var(--color-bg-container);
+  padding: 12px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.graph-controls {
+  position: absolute;
+  bottom: 24px;
+  right: 24px;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  background-color: var(--color-bg-container);
+  padding: 8px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}

@@ -1,0 +1,77 @@
+/* Light theme (default) - DeepSeek Style */
+:root {
+  /* Brand Colors */
+  --color-primary: #4d6bfe; /* DeepSeek Blue approx */
+  --color-primary-hover: #3b5bdb;
+  --color-primary-active: #2a4acb;
+  --color-primary-light: #eef2ff;
+  --color-primary-fade: rgba(77, 107, 254, 0.1);
+
+  /* Backgrounds */
+  --color-bg-primary: #ffffff;
+  --color-bg-secondary: #f9fafb; /* Light Gray Sidebar */
+  --color-bg-tertiary: #f3f4f6;
+  --color-bg-container: #ffffff;
+  --color-bg-layout: #ffffff;
+  --color-bg-glass: rgba(255, 255, 255, 0.9);
+  --color-bg-glass-strong: #ffffff;
+
+  /* Surface & Borders */
+  --color-surface: #ffffff;
+  --color-surface-hover: #f3f4f6;
+  --color-border: #e5e7eb; /* Light border */
+  --color-border-light: #f3f4f6;
+
+  /* Text */
+  --color-text-primary: #1f2937; /* Gray 900 */
+  --color-text-secondary: #4b5563; /* Gray 600 */
+  --color-text-tertiary: #9ca3af; /* Gray 400 */
+  --color-text-disabled: #d1d5db;
+
+  /* Chat bubbles */
+  --color-chat-user-bg: #4d6bfe;
+  --color-chat-user-text: #ffffff;
+  --color-chat-ai-bg: #f9fafb;
+  --color-chat-ai-text: #1f2937;
+
+  /* Typography */
+  --font-family-base: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-family-mono: 'JetBrains Mono', 'Fira Code', monospace;
+
+  /* Spacing */
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2rem;
+  --spacing-2xl: 3rem;
+
+  /* Border radius */
+  --radius-sm: 0.375rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
+  --radius-full: 9999px;
+
+  /* Effects */
+  --backdrop-blur: blur(12px);
+  
+  /* Shadows */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -4px rgba(0, 0, 0, 0.05);
+  
+  /* Transitions */
+  --transition-fast: 0.15s ease;
+  --transition-normal: 0.2s ease;
+}
+
+/* Dark theme overrides if needed, but keeping focused on Light for now as per request */
+[data-theme='dark'] {
+  --color-primary: #60a5fa;
+  --color-bg-primary: #0f172a;
+  --color-bg-secondary: #1e293b;
+  --color-text-primary: #f8fafc;
+  --color-text-secondary: #94a3b8;
+  --color-border: #334155;
+}

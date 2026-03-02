@@ -1,0 +1,79 @@
+/* Header is typically hidden/minimal on desktop, but used for collapsed controls */
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.mobile-only {
+  display: none;
+}
+
+.menu-toggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  color: var(--color-text-secondary);
+  padding: 8px;
+  border-radius: 4px;
+}
+
+.menu-toggle:hover {
+  background-color: var(--color-surface-hover);
+}
+
+/* Collapsed Controls */
+.collapsed-controls {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  pointer-events: auto; /* Enable interaction */
+}
+
+.collapsed-brand-logo {
+  font-size: 24px;
+  /* Replace with actual image/svg if available */
+  color: var(--color-primary); 
+}
+
+/* Whale Icon styling using a simple SVG shape if emoji is not desired, 
+   but for now styling the span */
+.brand-icon-whale {
+  display: inline-block;
+  /* Adjust based on actual icon needed */
+  filter: hue-rotate(200deg); /* Adjust color if needed */
+}
+
+.collapsed-actions-pill {
+  display: flex;
+  align-items: center;
+  background-color: white;
+  border: 1px solid var(--color-border);
+  border-radius: 9999px; /* Pill shape */
+  padding: 4px 8px;
+  box-shadow: var(--shadow-sm);
+  gap: 4px;
+}
+
+.collapsed-action-btn {
+  color: var(--color-text-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.collapsed-action-btn:hover {
+  background-color: var(--color-bg-tertiary);
+  color: var(--color-primary);
+}
+
+@media (max-width: 768px) {
+  .mobile-only {
+    display: block;
+  }
+  
+  .collapsed-controls {
+    display: none; /* Hide desktop collapsed controls on mobile */
+  }
+}
